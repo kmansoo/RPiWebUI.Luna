@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Raspberry Pi WebUI</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="image/logo.png" rel="icon" type="image/png" />
+
+    <link href="css/bootstrap/3.3.7/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/fileinput.min.css" rel="stylesheet" />
+    <link href="app-content/app.css" rel="stylesheet" />    
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse" style="margin-bottom:0">
+        <div class="container-fluid" ng-controller="NavBarServiceController">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="https://github.com/kmansoo/Luna">Luna</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#/status">Status</a></li>
+                <li class="active"><a href="#/network">Network</a></li>
+                <li class="active"><a href="#/wireless">Wireless</a></li>
+                <li class="active"><a href="#/system">System</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" ng-click="logout_if_status_is_logedin()"><span class="glyphicon {{login_icon_type()}}"></span>{{login_title()}}</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    <div class="credits text-center">
+        <p>
+            <a href="https://github.com/kmansoo/Luna">Luna: It's a simple S/W platform to make applications or web server using RESTful API.</a>
+        </p>
+    </div>
+
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/angularjs/1.5.8/angular.min.js"></script>
+    <script src="js/bootstrap/3.3.7/bootstrap.min.js"></script>
+    <script src="js/ui-bootstrap/2.0.2/ui-bootstrap-tpls-2.0.2.min.js"></script>
+    <script src="js/bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="js/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="js/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="js/etc_angular_components/angular-md5.min.js"></script>
+    <script src="js/etc_angular_components/angular-modal-service.min.js"></script>
+    <script src="js/etc_angular_components/ng-file-upload.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="navbar.service.controller.js"></script>
+    <script src="app-services/authentication.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+    <script src="app-services/user.service.js"></script>
+
+    <script src="login/login.controller.js"></script>
+    <script src="status/status.controller.js"></script>
+    <script src="system/system.controller.js"></script>
+    <script src="system/file.upload.controller.js"></script>
+
+</body>
+</html>

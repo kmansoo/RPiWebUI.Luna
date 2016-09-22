@@ -1,0 +1,16 @@
+﻿<script src="js/etc_angular_components/fileinput.min.js"></script>
+
+<div>
+    <h2>Wireless Setting</h2>
+
+    <div class="form-group well">
+        <label>Rx/Tx Power</label>
+        <div class="form-inline">
+            <label>Rx:</label>
+            <input type="text" name="rx_power" id="rx_power" class="form-control" readonly="readonly" ng-model="vm.rx_power"/>
+            <label>Tx:</label>
+            <input type="text" name="tx_power" id="tx_power" class="form-control" readonly="readonly" ng-model="vm.tx_power"/>
+            <button type="button" class="btn btn-info" ng-disabled="vm.isRebooting" ng-click="vm.retrieve_rx_tx_power()">Retrieve</button>
+        </div>
+    </div>
+</div>
