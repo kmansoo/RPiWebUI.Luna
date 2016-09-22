@@ -1,7 +1,5 @@
 ﻿<div>
     <h2>Status</h2>
-
-
     <h3>Network</h3>
     <div class="form-group well">
         <div ng-repeat="item in vm.network_form">
@@ -17,7 +15,7 @@
     <div class="animate-hide" ng-hide="vm.has_wifi_interface()"">
         <h3>Wi-Fi</h3>
             <div class="form-group well">
-            <div ng-repeat="item in vm.wifi_network_form">
+            <div ng-repeat="item in vm.wireless_form">
                 <div class="form-group row">
                     <label class="col-xs-2 col-form-label">{{item.title}}</label>
                     <div class="col-xs-10">

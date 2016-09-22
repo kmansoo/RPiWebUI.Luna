@@ -1,12 +1,22 @@
-﻿<script src="js/etc_angular_components/fileinput.min.js"></script>
-
-<div>
-    <h2>Networking Setting</h2>
-
+﻿<div>
+    <h2>Network Setting</h2>
     <div class="form-group well">
-        <label for="password">System password</label>
-        <input type="text" name="password" id="password" class="form-control" ng-disabled="vm.isRebooting" ng-model="vm.password" required />
-        <button type="button" class="btn btn-info" ng-disabled="vm.isRebooting" ng-click="vm.get_password()">Get Password</button>
-        <button type="button" ng-disabled="form.$invalid || vm.isRebooting" class="btn btn-primary" ng-click="vm.set_password()">Set Password</button>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label">Type</label>
+            <div class="col-xs-10">
+                <select class="input-large form-control" ng-model="vm.ip_method">
+                    <option value="static">Static IP</option>
+                    <option value="dhcp" selected="selected">DHCP(Dynamic IP)</option>
+                </select>
+            </div>
+        </div>        
+        <div ng-repeat="item in vm.network_form">
+            <div class="form-group row" ng-if="vm.ip_method == 'static'">
+                <label class="col-xs-2 col-form-label">{{item.title}}</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" value="{{item.value}}" id="{{item.id}}">
+                </div>
+            </div>
+        </div>          
     </div>
 </div>

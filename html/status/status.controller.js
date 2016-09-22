@@ -27,7 +27,7 @@
             }
         ];
 
-        vm.wifi_network_form = [
+        vm.wireless_form = [
             {
                 "title" : "SSID", "id" : "vm.wifi_ssid", "value" : ""
             },
@@ -47,28 +47,15 @@
 
         vm.has_wifi_interface = has_wifi_interface;
 
-        /*
-        vm.network_form[0].value = "10.0.1.12";
-        vm.network_form[1].value = "255.255.255.0";
-        vm.network_form[2].value = "10.0.1.1";
-        vm.network_form[3].value = "Disconnected";
-        */
-
-        vm.wifi_network_form[0].value = "-";
-        vm.wifi_network_form[1].value = "-";
-        vm.wifi_network_form[2].value = "-";
-        vm.wifi_network_form[3].value = "-";
-        vm.wifi_network_form[4].value = "-";
-
         (function initController() {
             for (var index = 0; index < 4; index++)
                 vm.network_form[index].value = "-";
 
-            for (var index = 0; index < 4; index++)
-                vm.wifi_network_form[index].value = "-";
+            for (var index = 0; index < 5; index++)
+                vm.wireless_form[index].value = "-";
 
             vm.network_form[3].value = "Disconnected";
-            vm.wifi_network_form[4].value = "Disconnected";
+            vm.wireless_form[4].value = "Disconnected";
 
             $http.get('/api/network/status')
                 .success(function(data, status, headers, config) {
@@ -92,13 +79,13 @@
                 .success(function(data, status, headers, config) {
                     if (status == 200) {
                         try {
-                            vm.wifi_network_form[0].value = data["wireless"].ssid;
-                            vm.wifi_network_form[1].value = data["wireless"].ipv4;
-                            vm.wifi_network_form[2].value = data["wireless"].subnet_mask;
-                            vm.wifi_network_form[3].value = data["wireless"].router;
+                            vm.wireless_form[0].value = data["wireless"].ssid;
+                            vm.wireless_form[1].value = data["wireless"].ipv4;
+                            vm.wireless_form[2].value = data["wireless"].subnet_mask;
+                            vm.wireless_form[3].value = data["wireless"].router;
 
                             if (data["wireless"].is_connected == true)
-                                vm.wifi_network_form[4].value = "Connected";
+                                vm.wireless_form[4].value = "Connected";
                         } catch (err) {
 
                         }

@@ -16,13 +16,13 @@
             })
 
             .when('/network', {
-                controller: 'NetworkSettingController',
+                controller: 'NetworkController',
                 templateUrl: 'network/network.view.html',
                 controllerAs: 'vm'
             })
 
              .when('/wireless', {
-                controller: 'WirelessSettingController',
+                controller: 'WirelessController',
                 templateUrl: 'wireless/wireless.view.html',
                 controllerAs: 'vm'
             })

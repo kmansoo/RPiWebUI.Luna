@@ -1,16 +1,22 @@
-﻿<script src="js/etc_angular_components/fileinput.min.js"></script>
-
-<div>
+﻿<div>
     <h2>Wireless Setting</h2>
-
     <div class="form-group well">
-        <label>Rx/Tx Power</label>
-        <div class="form-inline">
-            <label>Rx:</label>
-            <input type="text" name="rx_power" id="rx_power" class="form-control" readonly="readonly" ng-model="vm.rx_power"/>
-            <label>Tx:</label>
-            <input type="text" name="tx_power" id="tx_power" class="form-control" readonly="readonly" ng-model="vm.tx_power"/>
-            <button type="button" class="btn btn-info" ng-disabled="vm.isRebooting" ng-click="vm.retrieve_rx_tx_power()">Retrieve</button>
+        <div class="form-group row">
+            <label class="col-xs-2 col-form-label">Type</label>
+            <div class="col-xs-10">
+                <select class="input-large form-control" ng-model="vm.ip_method">
+                    <option value="static">Static IP</option>
+                    <option value="dhcp" selected="selected">DHCP(Dynamic IP)</option>
+                </select>
+            </div>
+        </div>        
+        <div ng-repeat="item in vm.wireless_form">
+            <div class="form-group row" ng-if="vm.ip_method == 'static'">
+                <label class="col-xs-2 col-form-label">{{item.title}}</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" value="{{item.value}}" id="{{item.id}}">
+                </div>
+            </div>
         </div>
     </div>
 </div>
