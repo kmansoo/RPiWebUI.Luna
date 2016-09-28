@@ -1,22 +1,32 @@
 ﻿<div>
     <h2>Network Setting</h2>
-    <div class="form-group well">
-        <div class="form-group row">
-            <label class="col-xs-2 col-form-label">Type</label>
-            <div class="col-xs-10">
-                <select class="input-large form-control" ng-model="vm.ip_method">
-                    <option value="static">Static IP</option>
-                    <option value="dhcp" selected="selected">DHCP(Dynamic IP)</option>
-                </select>
-            </div>
-        </div>        
-        <div ng-repeat="item in vm.network_form">
-            <div class="form-group row" ng-if="vm.ip_method == 'static'">
-                <label class="col-xs-2 col-form-label">{{item.title}}</label>
+    <form name="form" ng-submit="vm.login()" role="form">
+        <div class="form-group well">
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Type</label>
                 <div class="col-xs-10">
-                    <input class="form-control" type="text" value="{{item.value}}" id="{{item.id}}">
+                    <select class="input-large form-control" ng-model="vm.ip_method">
+                        <option value="static">Static IP</option>
+                        <option value="dhcp">DHCP (Dynamic IP)</option>
+                    </select>
+                </div>
+            </div>        
+            <div ng-repeat="item in vm.network_form">
+                <div class="form-group row">
+                    <label class="col-xs-2 col-form-label">{{item.title}}</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="text" value="{{item.value}}" id="{{item.id}}" ng-readonly="vm.ip_method == 'dhcp'">
+                    </div>
                 </div>
             </div>
-        </div>          
-    </div>
+
+            <label class="col-xs-2 col-form-label"> </label>
+            <button type="button" class="btn btn-primary" ng-click="" ng-if="vm.ip_method == 'dhcp'">Renew</button>
+            <button type="button" class="btn btn-warning" ng-click="" ng-if="vm.ip_method == 'dhcp'">Release</button>
+        </div>      
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-success center-block">Save</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>        
+    </form>
 </div>

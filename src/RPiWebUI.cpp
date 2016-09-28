@@ -18,11 +18,18 @@
 #include "Definitions.h"
 #include "fake_device/fake_device.h"
 
+#include "system/LunaSystemCall.h"
+
+#include "system/LunaWiredNetworkManager.h"
+#include "system/LunaWirelessNetworkManager.h"
+
 RPiWebUI::RPiWebUI() {
     addAPI(std::string("/api/users/*"), std::bind(&RPiWebUI::users, this, std::placeholders::_1, std::placeholders::_2));
 
     addAPI(std::string("/api/network/status"), std::bind(&RPiWebUI::network_status, this, std::placeholders::_1, std::placeholders::_2));
+
     addAPI(std::string("/api/wireless/status"), std::bind(&RPiWebUI::wireless_status, this, std::placeholders::_1, std::placeholders::_2));
+    addAPI(std::string("/api/wireless/ssid"), std::bind(&RPiWebUI::wireless_ssid, this, std::placeholders::_1, std::placeholders::_2));
 
     addAPI(std::string("/api/system/password"), std::bind(&RPiWebUI::password, this, std::placeholders::_1, std::placeholders::_2));
     addAPI(std::string("/api/system/rx_tx_power"), std::bind(&RPiWebUI::rx_tx_power, this, std::placeholders::_1, std::placeholders::_2));
@@ -230,23 +237,11 @@ bool RPiWebUI::network_status(std::shared_ptr<Luna::ccWebServerRequest> pRequest
     switch ((std::uint32_t)pRequest->get_method()) {
     case Luna::ccWebServerRequest::HttpMethod_Get:
     {
-        std::string json_data;
-        
-        Luna::ccString::format(
-            json_data,
-            "{"\
-                "\"network\": {" \
-                    "\"ipv4\":\"%s\"," \
-                    "\"subnet_mask\":\"%s\"," \
-                    "\"router\":\"%s\"," \
-                    "\"is_connected\":%s"\
-                "}"\
-            "}",
-            "192.168.1.55",
-            "255.255.255.0",
-            "192.168.1.1",
-            "true");
+        Json::StyledWriter      json_writer;
+        LunaWiredNetworkManager nm;
 
+        std::string json_data = json_writer.write(nm.get_info());
+        
         pResponse->send_status(200, std::string("OK"));
         pResponse->send_content_type("application/javascript", json_data.length());
         pResponse->send_content(json_data);
@@ -262,31 +257,34 @@ bool RPiWebUI::wireless_status(std::shared_ptr<Luna::ccWebServerRequest> pReques
     switch ((std::uint32_t)pRequest->get_method()) {
     case Luna::ccWebServerRequest::HttpMethod_Get:
     {
-        std::string json_data;
-        
-        Luna::ccString::format(
-            json_data,
-            "{"\
-                "\"wireless\": {" \
-                    "\"ssid\":\"%s\"," \
-                    "\"ipv4\":\"%s\"," \
-                    "\"subnet_mask\":\"%s\"," \
-                    "\"router\":\"%s\"," \
-                    "\"is_connected\":%s"\
-                "}"\
-            "}",
-            "MarsNetwork",
-            "192.168.1.66",
-            "255.255.255.0",
-            "192.168.1.1",
-            "true");
+        Json::StyledWriter json_writer;
+        LunaWirelessNetworkManager wnm;
 
-            pResponse->send_status(200, std::string("OK"));
-            pResponse->send_content_type("application/javascript", json_data.length());
-            pResponse->send_content(json_data);
+        std::string json_data = json_writer.write(wnm.get_info());
 
-            //  for test
-            luna_initDeviceStatus();
+        pResponse->send_status(200, std::string("OK"));
+        pResponse->send_content_type("application/javascript", json_data.length());
+        pResponse->send_content(json_data);
+        break;
+    }
+    }
+
+    return true;
+}
+
+//  for wireless
+bool RPiWebUI::wireless_ssid(std::shared_ptr<Luna::ccWebServerRequest> pRequest, std::shared_ptr<Luna::ccWebServerResponse> pResponse) {
+    switch ((std::uint32_t)pRequest->get_method()) {
+    case Luna::ccWebServerRequest::HttpMethod_Get:
+    {     
+        Json::StyledWriter json_writer;
+        LunaWirelessNetworkManager wnm;
+
+        std::string json_data = json_writer.write(wnm.get_info());
+
+        pResponse->send_status(200, std::string("OK"));
+        pResponse->send_content_type("application/javascript", json_data.length());
+        pResponse->send_content(json_data);
         break;
     }
     }

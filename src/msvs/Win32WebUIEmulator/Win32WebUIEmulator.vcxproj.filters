@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{ba27f074-a710-44ad-83f2-6b9d80a4e329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fake_device">
+      <UniqueIdentifier>{16f13366-9581-476f-9aa2-b6a2cb5b4e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="md5">
+      <UniqueIdentifier>{cdc00eae-35a0-4a8d-b14f-fc23693841fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system">
+      <UniqueIdentifier>{e7a3add5-a99b-4e50-ac95-e5e0b1949be2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RPiWebUI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\LunaSystemCall.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\LunaWirelessNetworkManager.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\md5\md5.cpp">
+      <Filter>md5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fake_device\fake_device.cpp">
+      <Filter>fake_device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\LunaWiredNetworkManager.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\RPiWebUI.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\LunaSystemCall.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\LunaWirelessNetworkManager.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\md5\md5.h">
+      <Filter>md5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fake_device\fake_device.h">
+      <Filter>fake_device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\LunaWiredNetworkManager.h">
+      <Filter>system</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

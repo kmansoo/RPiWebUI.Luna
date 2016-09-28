@@ -61,12 +61,14 @@
                 .success(function(data, status, headers, config) {
                     if (status == 200) {
                         try {
-                            vm.network_form[0].value = data.network.ipv4;
-                            vm.network_form[1].value = data.network.subnet_mask;
-                            vm.network_form[2].value = data.network.router;
+                            var if_info = data.if_list[0];
 
-                            if (data.network.is_connected == true)
-                                vm.network_form[3].value = "Connected";                            
+                            vm.network_form[0].value = if_info.ipv4.address;
+                            vm.network_form[1].value = if_info.ipv4.subnet_mask;
+                            vm.network_form[2].value = if_info.ipv4.gateway;
+
+                            if (if_info.state == "connected")
+                                vm.network_form[3].value = "Connected";                     
                         } catch (err) {
 
                         }
@@ -79,12 +81,14 @@
                 .success(function(data, status, headers, config) {
                     if (status == 200) {
                         try {
-                            vm.wireless_form[0].value = data["wireless"].ssid;
-                            vm.wireless_form[1].value = data["wireless"].ipv4;
-                            vm.wireless_form[2].value = data["wireless"].subnet_mask;
-                            vm.wireless_form[3].value = data["wireless"].router;
+                            var if_info = data.if_list[0];
 
-                            if (data["wireless"].is_connected == true)
+                            vm.wireless_form[0].value = if_info.wireless.ssid;
+                            vm.wireless_form[1].value = if_info.ipv4.address;
+                            vm.wireless_form[2].value = if_info.ipv4.subnet_mask;
+                            vm.wireless_form[3].value = if_info.ipv4.gateway;
+
+                            if (if_info.state == "connected")
                                 vm.wireless_form[4].value = "Connected";
                         } catch (err) {
 

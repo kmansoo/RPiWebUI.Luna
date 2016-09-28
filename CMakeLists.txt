@@ -30,11 +30,15 @@ link_directories(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 #
 ADD_SUBDIRECTORY(dependency/Luna)
 
+file(GLOB SRC_FILES 
+	src/*.cpp
+	src/system/*.cpp
+	src/fake_device/*.cpp
+	src/md5/*.cpp
+)
+
 add_executable (RPiWebUI.Luna
-    src/main.cpp
-    src/RPiWebUI.cpp
-    src/fake_device/fake_device.cpp
-    src/md5/md5.cpp
+    ${SRC_FILES}
 )
 
 TARGET_LINK_LIBRARIES(RPiWebUI.Luna

@@ -24,6 +24,7 @@ protected:
 
     bool network_status(std::shared_ptr<Luna::ccWebServerRequest> pRequest, std::shared_ptr<Luna::ccWebServerResponse> pResponse);
     bool wireless_status(std::shared_ptr<Luna::ccWebServerRequest> pRequest, std::shared_ptr<Luna::ccWebServerResponse> pResponse);
+    bool wireless_ssid(std::shared_ptr<Luna::ccWebServerRequest> pRequest, std::shared_ptr<Luna::ccWebServerResponse> pResponse);    
 };
 
 #endif // !__LUNA_SIMPLE_LOGIN_RESTFUL_API_H__
