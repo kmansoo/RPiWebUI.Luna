@@ -1,7 +1,15 @@
 ﻿<div>
     <h2>Network Setting</h2>
-    <form name="form" ng-submit="vm.login()" role="form">
+    <form name="form" ng-submit="vm.save_configuration()" role="form">
         <div class="form-group well">
+            <div class="form-group row" ng-show="vm.scaned_if_list.length > 1">
+                <label class="col-xs-2 col-form-label">Interface</label>
+                <div class="col-xs-10">
+                    <select class="input-large form-control" ng-model="vm.selected_ifname" ng-change="vm.ifname_change()">
+                        <option ng-repeat="item in vm.scaned_if_list" value="{{item.ifname}}">{{item.ifname}}</option>
+                    </select>
+                </div>
+            </div>            
             <div class="form-group row">
                 <label class="col-xs-2 col-form-label">Type</label>
                 <div class="col-xs-10">
@@ -11,18 +19,48 @@
                     </select>
                 </div>
             </div>        
-            <div ng-repeat="item in vm.network_form">
-                <div class="form-group row">
-                    <label class="col-xs-2 col-form-label">{{item.title}}</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" value="{{item.value}}" id="{{item.id}}" ng-readonly="vm.ip_method == 'dhcp'">
-                    </div>
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Address</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" ng-model="vm.ipv4_address" ng-readonly="vm.ip_method == 'dhcp'">
                 </div>
             </div>
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Subnet Mask</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" ng-model="vm.ipv4_subnet_mask" ng-readonly="vm.ip_method == 'dhcp'">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Gateway</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" ng-model="vm.ipv4_gateway" ng-readonly="vm.ip_method == 'dhcp'">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Primary DNS</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" ng-model="vm.ipv4_dns" ng-readonly="vm.ip_method == 'dhcp'">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label">Status</label>
+                <div class="col-xs-10">
+                    <input class="form-control" type="text" ng-model = "vm.connection_status" ng-readonly="true">
+                </div>
+            </div>            
 
-            <label class="col-xs-2 col-form-label"> </label>
-            <button type="button" class="btn btn-primary" ng-click="" ng-if="vm.ip_method == 'dhcp'">Renew</button>
-            <button type="button" class="btn btn-warning" ng-click="" ng-if="vm.ip_method == 'dhcp'">Release</button>
+            <!--
+                2016.9.30, Mansoo(mansoo.kim@icloud.com)
+
+                There are some problems. I can not recognize the info between ifname and connection id when connection disconnected.
+                So I'll try to implement this features after studying a nmcli tool more.
+            -->
+            <div ng-show = "vm.connection_uuid != ''">                            
+                <label class="col-xs-2 col-form-label"> </label>
+                <button type="button" class="btn btn-primary" ng-click="vm.dhcp_renew()" ng-if="vm.ip_method == 'dhcp'">Renew</button>
+                <button type="button" class="btn btn-warning" ng-click="vm.dhcp_release()" ng-if="vm.ip_method == 'dhcp'">Release</button>
+            </div>
         </div>      
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-success center-block">Save</button>

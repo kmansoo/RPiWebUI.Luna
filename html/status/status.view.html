@@ -12,8 +12,8 @@
         </div>            
     </div>
 
-    <div class="animate-hide" ng-hide="vm.has_wifi_interface()"">
-        <h3>Wi-Fi</h3>
+    <div class="animate-hide" ng-show="vm.is_wireless_connect"">
+        <h3>Wireless</h3>
             <div class="form-group well">
             <div ng-repeat="item in vm.wireless_form">
                 <div class="form-group row">
