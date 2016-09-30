@@ -14,7 +14,7 @@ make -j4
 ```
 # How to test
 ```bash
-./bin/RPiWebUI ../html/
+sudo ./bin/RPiWebUI.Luna ../../html/
 ```
 You can connect to this Web Server using Web browser after executing this application.
 The default port of Web Server is 8000, so you must use this url: http://localhost:8000
