@@ -5,8 +5,8 @@
         .module('app')
         .controller('StatusController', StatusController);
 
-    StatusController.$inject = ['$scope', '$rootScope', 'AuthenticationService', '$http', '$timeout', '$interval', 'ModalService'];
-    function StatusController($scope, $rootScope, AuthenticationService, $http, $timeout, $interval, ModalService) {
+    StatusController.$inject = ['$scope', '$rootScope', 'AuthenticationService', '$http', '$timeout', '$interval'];
+    function StatusController($scope, $rootScope, AuthenticationService, $http, $timeout, $interval) {
 
         $scope.message = true;  //  It can enable what the ng-hide work.
         
