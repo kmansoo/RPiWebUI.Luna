@@ -39,6 +39,12 @@
                 controllerAs: 'vm'
             })
 
+            .when('/control', {
+                controller: 'ControlController',
+                templateUrl: 'control/control.view.html',
+                controllerAs: 'vm'
+            })
+
             .otherwise({ redirectTo: '/' });
     }
 
