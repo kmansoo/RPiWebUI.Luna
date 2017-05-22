@@ -648,6 +648,13 @@ function w3SetColorsByAttribute() {
         }
         var hh = 0;
         function clickColor(hex, seltop, selleft, html5) {
+          LunaWaitingDialog.show("Please wait while configuring DHCP release.");
+
+            $timeout(function() {
+                get_state();
+                LunaWaitingDialog.hide();
+            }, 2000);
+
             var c, cObj, colormap, areas, i, areacolor, cc;
             if (html5 && html5 == 5)  {
                 c = document.getElementById("html5colorpicker").value;

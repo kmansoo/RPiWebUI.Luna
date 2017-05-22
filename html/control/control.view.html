@@ -54,7 +54,7 @@
     <div id='divpreview'>&nbsp;</div>
       <h3>LED 색상 코드 입력</h3>
       <div id="entercolorDIV">
-        <input type="text" id="entercolor" placeholder="#993333" onkeydown="submitOnEnter(event)" onfocus="clearWrongInput();" style="z-index:0;"><button class="btn btn-default" type="button" onclick="vm.clickColor(0,-1,-1)" style="z-index:0;">OK</button>
+        <input type="text" id="entercolor" placeholder="#993333" onkeydown="submitOnEnter(event)" onfocus="clearWrongInput();" style="z-index:0;"><button class="btn btn-default" type="button" ng-click="vm.clickColor(0,-1,-1)" style="z-index:0;">OK</button>
       </div>
       <div id="wronginputDIV">Wrong Input</div>
       <br>
