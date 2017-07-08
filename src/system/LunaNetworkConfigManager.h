@@ -8,7 +8,7 @@
 *      Author: Mansoo Kim(mansoo.kim@icloud.com)
 */
 
-#include "ccJsonParser/json/value.h"
+#include "json/value.h"
 
 class LunaNetworkConfigManager {
 

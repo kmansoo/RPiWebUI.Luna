@@ -7,7 +7,7 @@
 #include "LunaNetworkConfigManager.h"
 #include "LunaSystemCall.h"
 
-#include "ccJsonParser/json/writer.h"
+#include "json/writer.h"
 
 
 LunaNetworkConfigManager::LunaNetworkConfigManager() {
