@@ -19,6 +19,8 @@ include_directories(
 	./dependency/Luna/src/ThirdPartyLibrary/ccMongooseServer/include
 )
 
+# for RP3 on Linux
+# cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.arm.cmake
 
 # Check OS and Processor Information 
 #
