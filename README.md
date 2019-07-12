@@ -7,6 +7,8 @@ And this project supports a web server based on Luna to support RESTful API that
 
 ## macOS(OS X) and Linux(i386 and Raspberry Pi2)
 ```bash
+git submodule init
+git submodule update
 mkdir build
 cd build
 cmake ..
