@@ -29,17 +29,17 @@ const char* luna_getLoginPassword() {
 }
 
 RPiWebUI::RPiWebUI() {
-    addAPI(std::string("/api/users/*"), std::bind(&RPiWebUI::users, this, std::placeholders::_1, std::placeholders::_2));
+    add_api(std::string("/api/users/*"), std::bind(&RPiWebUI::users, this, std::placeholders::_1, std::placeholders::_2));
 
-    addAPI(std::string("/api/network/status"), std::bind(&RPiWebUI::network_status, this, std::placeholders::_1, std::placeholders::_2));
+    add_api(std::string("/api/network/status"), std::bind(&RPiWebUI::network_status, this, std::placeholders::_1, std::placeholders::_2));
 
-    addAPI(std::string("/api/network/connection/ipv4/dhcp"), std::bind(&RPiWebUI::network_connection_ipv4_dhcp, this, std::placeholders::_1, std::placeholders::_2));
+    add_api(std::string("/api/network/connection/ipv4/dhcp"), std::bind(&RPiWebUI::network_connection_ipv4_dhcp, this, std::placeholders::_1, std::placeholders::_2));
 
-    addAPI(std::string("/api/wireless/status"), std::bind(&RPiWebUI::wireless_status, this, std::placeholders::_1, std::placeholders::_2));
-    addAPI(std::string("/api/wireless/ssid/*"), std::bind(&RPiWebUI::wireless_ssid, this, std::placeholders::_1, std::placeholders::_2));
+    add_api(std::string("/api/wireless/status"), std::bind(&RPiWebUI::wireless_status, this, std::placeholders::_1, std::placeholders::_2));
+    add_api(std::string("/api/wireless/ssid/*"), std::bind(&RPiWebUI::wireless_ssid, this, std::placeholders::_1, std::placeholders::_2));
 
-    addAPI(std::string("/api/system/reboot"), std::bind(&RPiWebUI::system_reboot, this, std::placeholders::_1, std::placeholders::_2));
-    addAPI(std::string("/api/system/shutdown"), std::bind(&RPiWebUI::system_shutdown, this, std::placeholders::_1, std::placeholders::_2));
+    add_api(std::string("/api/system/reboot"), std::bind(&RPiWebUI::system_reboot, this, std::placeholders::_1, std::placeholders::_2));
+    add_api(std::string("/api/system/shutdown"), std::bind(&RPiWebUI::system_shutdown, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 RPiWebUI::~RPiWebUI() {
